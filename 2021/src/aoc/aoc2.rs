@@ -1112,3 +1112,28 @@ impl Aoc<Vec<String>, i32> for Aoc2 {
         submarine.mult()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::{Aoc, Aoc2};
+
+    #[test]
+    fn aoc21_test() {
+        assert_eq!(Aoc2::run(crate::Part::One, true), 150);
+    }
+
+    #[test]
+    fn aoc21() {
+        assert_eq!(Aoc2::run(crate::Part::One, false), 1635930);
+    }
+
+    #[test]
+    fn aoc22_test() {
+        assert_eq!(Aoc2::run(crate::Part::Two, true), 900);
+    }
+
+    #[test]
+    fn aoc22() {
+        assert_eq!(Aoc2::run(crate::Part::Two, false), 1781819478);
+    }
+}

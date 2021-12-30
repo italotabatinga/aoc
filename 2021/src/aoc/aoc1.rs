@@ -189,3 +189,28 @@ impl Aoc<Vec<i32>, i32> for Aoc1 {
         count
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::{Aoc, Aoc1};
+
+    #[test]
+    fn aoc11_test() {
+        assert_eq!(Aoc1::run(crate::Part::One, true), 7);
+    }
+
+    #[test]
+    fn aoc11() {
+        assert_eq!(Aoc1::run(crate::Part::One, false), 1655);
+    }
+
+    #[test]
+    fn aoc12_test() {
+        assert_eq!(Aoc1::run(crate::Part::Two, true), 5);
+    }
+
+    #[test]
+    fn aoc12() {
+        assert_eq!(Aoc1::run(crate::Part::Two, false), 1683);
+    }
+}

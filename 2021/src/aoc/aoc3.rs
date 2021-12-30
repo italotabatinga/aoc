@@ -1078,3 +1078,28 @@ fn find_by_criteria(arr: &Vec<u16>, pos: u16, criteria: fn(u16, u16, &Vec<u16>) 
 
     find_by_criteria(&filtered, pos - 1, criteria)
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::{Aoc, Aoc3};
+
+    #[test]
+    fn aoc31_test() {
+        assert_eq!(Aoc3::run(crate::Part::One, true), 198);
+    }
+
+    #[test]
+    fn aoc31() {
+        assert_eq!(Aoc3::run(crate::Part::One, false), 3009600);
+    }
+
+    #[test]
+    fn aoc32_test() {
+        assert_eq!(Aoc3::run(crate::Part::Two, true), 230);
+    }
+
+    #[test]
+    fn aoc32() {
+        assert_eq!(Aoc3::run(crate::Part::Two, false), 6940518);
+    }
+}

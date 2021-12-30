@@ -779,3 +779,29 @@ fn parse_board(s: &String) -> Board {
         .collect();
     Board::new(vec_board)
 }
+
+
+#[cfg(test)]
+mod tests {
+    use crate::{Aoc, Aoc4};
+
+    #[test]
+    fn aoc41_test() {
+        assert_eq!(Aoc4::run(crate::Part::One, true), 4512);
+    }
+
+    #[test]
+    fn aoc41() {
+        assert_eq!(Aoc4::run(crate::Part::One, false), 51034);
+    }
+
+    #[test]
+    fn aoc42_test() {
+        assert_eq!(Aoc4::run(crate::Part::Two, true), 1924);
+    }
+
+    #[test]
+    fn aoc42() {
+        assert_eq!(Aoc4::run(crate::Part::Two, false), 5434);
+    }
+}

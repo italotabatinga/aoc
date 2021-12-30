@@ -18,7 +18,7 @@ where
     fn part1(input: I, is_test: bool) -> R;
     fn part2(input: I, is_test: bool) -> R;
 
-    fn run(part: Part, is_test: bool) {
+    fn run(part: Part, is_test: bool) -> R {
         let input = if is_test {
             match part {
                 Part::One => Self::part1_test_input(),
@@ -32,6 +32,9 @@ where
             Part::Two => Self::part2(input, is_test),
         };
 
-        println!("Answer: {:?}", answer);
+        if !cfg!(test) {
+            println!("Answer: {:?}", answer)
+        }
+        answer
     }
 }
