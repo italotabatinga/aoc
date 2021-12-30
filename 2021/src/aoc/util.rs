@@ -11,7 +11,9 @@ where
 {
     fn input() -> I;
     fn part1_test_input() -> I;
-    fn part2_test_input() -> I;
+    fn part2_test_input() -> I {
+        Self::part1_test_input()
+    }
 
     fn part1(input: I, is_test: bool) -> R;
     fn part2(input: I, is_test: bool) -> R;

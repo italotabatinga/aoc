@@ -22,6 +22,8 @@ fn main() {
         "2.2" => Aoc2::run(Part::Two, is_test),
         "3.1" => Aoc3::run(Part::One, is_test),
         "3.2" => Aoc3::run(Part::Two, is_test),
+        "4.1" => Aoc4::run(Part::One, is_test),
+        "4.2" => Aoc4::run(Part::Two, is_test),
         _ => {
             println!("Module \"{}\" not found!", module);
             return;
