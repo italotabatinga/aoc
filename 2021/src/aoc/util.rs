@@ -10,11 +10,11 @@ where
     R: std::fmt::Debug,
 {
     fn input() -> String;
-    fn parse_input(s: String) -> I;
     fn part1_test_input() -> String;
     fn part2_test_input() -> String {
         Self::part1_test_input()
     }
+    fn parse_input(s: String) -> I;
 
     fn part1(input: I, is_test: bool) -> R;
     fn part2(input: I, is_test: bool) -> R;
