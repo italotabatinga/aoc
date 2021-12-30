@@ -5,4 +5,5 @@ mod aoc3;
 
 pub use aoc1::*;
 pub use aoc2::*;
+pub use aoc3::*;
 pub use util::*;
