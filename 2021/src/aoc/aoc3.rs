@@ -1026,17 +1026,11 @@ impl Aoc<Vec<u16>, u32> for Aoc3 {
             .fold(0, |acc, pos| acc + (find_most_frequent(&input, pos) << pos));
         let epsilon = !gamma & ((1 << max) - 1);
 
-        println!("gamma: {:?}\nepsilon: {:?}", gamma, epsilon);
-
         gamma as u32 * epsilon as u32
     }
 
     fn part2(input: Vec<u16>, is_test: bool) -> u32 {
         let max = if is_test { 5 } else { 12 };
-        let gamma = (0..max)
-            .into_iter()
-            .fold(0, |acc, pos| acc + (find_most_frequent(&input, pos) << pos));
-        let epsilon = !gamma & ((1 << max) - 1);
 
         let oxygen = find_by_criteria(&input, max - 1, |a, pos, arr| {
             let cmp = find_most_frequent(arr, pos) << pos;
