@@ -9,9 +9,10 @@ where
     I: std::fmt::Debug,
     R: std::fmt::Debug,
 {
-    fn input() -> I;
-    fn part1_test_input() -> I;
-    fn part2_test_input() -> I {
+    fn input() -> String;
+    fn parse_input(s: String) -> I;
+    fn part1_test_input() -> String;
+    fn part2_test_input() -> String {
         Self::part1_test_input()
     }
 
@@ -19,14 +20,14 @@ where
     fn part2(input: I, is_test: bool) -> R;
 
     fn run(part: Part, is_test: bool) -> R {
-        let input = if is_test {
+        let input = Self::parse_input(if is_test {
             match part {
                 Part::One => Self::part1_test_input(),
                 Part::Two => Self::part1_test_input(),
             }
         } else {
             Self::input()
-        };
+        });
         let answer = match part {
             Part::One => Self::part1(input, is_test),
             Part::Two => Self::part2(input, is_test),
