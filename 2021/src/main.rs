@@ -40,6 +40,12 @@ fn main() {
         "4.2" => {
             Aoc4::run(Part::Two, is_test);
         }
+        "5.1" => {
+            Aoc5::run(Part::One, is_test);
+        }
+        "5.2" => {
+            Aoc5::run(Part::Two, is_test);
+        }
         _ => {
             println!("Module \"{}\" not found!", module);
             return;
