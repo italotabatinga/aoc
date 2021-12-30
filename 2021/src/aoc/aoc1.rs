@@ -157,7 +157,7 @@ impl Aoc<Vec<i32>, i32> for Aoc1 {
         Vec::from([607, 618, 618, 617, 647, 716, 769, 792])
     }
 
-    fn part1(input: Vec<i32>) -> i32 {
+    fn part1(input: Vec<i32>, _: bool) -> i32 {
         let measurements = input;
 
         let mut prev = measurements.get(0).unwrap();
@@ -173,7 +173,7 @@ impl Aoc<Vec<i32>, i32> for Aoc1 {
         count
     }
 
-    fn part2(input: Vec<i32>) -> i32 {
+    fn part2(input: Vec<i32>, _: bool) -> i32 {
         let measurements = input;
         let mut prev = measurements[0] + measurements[1] + measurements[2];
         let mut count = 0;

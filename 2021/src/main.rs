@@ -14,7 +14,6 @@ fn main() {
         }
     };
 
-
     let is_test = args.contains(&String::from("test"));
     match module.as_str() {
         "1" | "1.1" => Aoc1::run(Part::One, is_test),

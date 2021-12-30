@@ -13,8 +13,8 @@ where
     fn part1_test_input() -> I;
     fn part2_test_input() -> I;
 
-    fn part1(input: I) -> R;
-    fn part2(input: I) -> R;
+    fn part1(input: I, is_test: bool) -> R;
+    fn part2(input: I, is_test: bool) -> R;
 
     fn run(part: Part, is_test: bool) {
         let input = if is_test {
@@ -26,8 +26,8 @@ where
             Self::input()
         };
         let answer = match part {
-            Part::One => Self::part1(input),
-            Part::Two => Self::part2(input),
+            Part::One => Self::part1(input, is_test),
+            Part::Two => Self::part2(input, is_test),
         };
 
         println!("Answer: {:?}", answer);

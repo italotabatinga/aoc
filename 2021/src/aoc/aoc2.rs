@@ -1088,7 +1088,7 @@ impl Aoc<Vec<String>, i32> for Aoc2 {
         Self::part1_test_input()
     }
 
-    fn part1(input: Vec<String>) -> i32 {
+    fn part1(input: Vec<String>, _: bool) -> i32 {
         let commands = input;
 
         let mut submarine = Submarine::new();
@@ -1100,7 +1100,7 @@ impl Aoc<Vec<String>, i32> for Aoc2 {
         submarine.mult()
     }
 
-    fn part2(input: Vec<String>) -> i32 {
+    fn part2(input: Vec<String>, _: bool) -> i32 {
         let commands = input;
 
         let mut submarine = Submarine::new();
