@@ -58,6 +58,12 @@ fn main() {
         "7.2" => {
             Aoc7::run(Part::Two, is_test);
         }
+        "8.1" => {
+            Aoc8::run(Part::One, is_test);
+        }
+        "8.2" => {
+            Aoc8::run(Part::Two, is_test);
+        }
         _ => {
             println!("Module \"{}\" not found!", module);
             return;
