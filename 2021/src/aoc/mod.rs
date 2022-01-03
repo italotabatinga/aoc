@@ -9,6 +9,7 @@ mod aoc7;
 mod aoc8;
 mod aoc9;
 mod aoc10;
+mod aoc11;
 
 pub use aoc1::*;
 pub use aoc2::*;
@@ -20,4 +21,5 @@ pub use aoc7::*;
 pub use aoc8::*;
 pub use aoc9::*;
 pub use aoc10::*;
+pub use aoc11::*;
 pub use util::*;
