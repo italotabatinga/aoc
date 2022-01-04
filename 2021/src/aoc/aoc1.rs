@@ -70,7 +70,7 @@ mod tests {
 
     #[test]
     fn aoc12_test() {
-        assert_eq!(Aoc1::run(crate::Part::Two, true), 5);
+        assert_eq!(Aoc1::run(crate::Part::Two, true), 4);
     }
 
     #[test]

@@ -23,7 +23,7 @@ where
         let input = Self::parse_input(if is_test {
             match part {
                 Part::One => Self::part1_test_input(),
-                Part::Two => Self::part1_test_input(),
+                Part::Two => Self::part2_test_input(),
             }
         } else {
             Self::input()
