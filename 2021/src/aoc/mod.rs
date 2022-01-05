@@ -13,6 +13,7 @@ mod aoc11;
 mod aoc12;
 mod aoc13;
 mod aoc14;
+mod aoc15;
 
 pub use aoc1::*;
 pub use aoc2::*;
@@ -28,4 +29,5 @@ pub use aoc11::*;
 pub use aoc12::*;
 pub use aoc13::*;
 pub use aoc14::*;
+pub use aoc15::*;
 pub use util::*;
