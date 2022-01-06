@@ -106,6 +106,12 @@ fn main() {
         "15.2" => {
             Aoc15::run(Part::Two, is_test);
         }
+        "16.1" => {
+            Aoc16::run(Part::One, is_test);
+        }
+        "16.2" => {
+            Aoc16::run(Part::Two, is_test);
+        }
         _ => {
             println!("Module \"{}\" not found!", module);
             return;
