@@ -8,11 +8,13 @@ import (
 	"github.com/italotabatinga/aoc/2020/src/collections"
 )
 
+type Input1 []int
+
 type Runner1 struct{}
 
-func (r Runner1) FmtInput(input string) []int {
+func (r Runner1) FmtInput(input string) Input1 {
 	inputSlice := strings.Split(input, "\n")
-	var result []int
+	var result Input1
 	for _, s := range inputSlice {
 		v, err := strconv.Atoi(s)
 		if err != nil {
@@ -23,7 +25,7 @@ func (r Runner1) FmtInput(input string) []int {
 	return result
 }
 
-func (r Runner1) Run1(input []int) {
+func (r Runner1) Run1(input Input1) {
 	set := make(collections.Set[int])
 	for _, v := range input {
 		comp := 2020 - v
@@ -36,7 +38,7 @@ func (r Runner1) Run1(input []int) {
 	}
 }
 
-func (r Runner1) Run2(input []int) {
+func (r Runner1) Run2(input Input1) {
 	values := make(collections.Set[int])
 	sums := make(map[int]collections.Tuple[int, int])
 	for _, v := range input {

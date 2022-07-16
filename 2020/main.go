@@ -20,7 +20,7 @@ func main() {
 	problem := src.ParseProblem(problemString, isTest)
 	switch problem.Day {
 	case 1:
-		src.Run[[]int](problem, aoc.Runner1{})
+		src.Run[aoc.Input1](problem, aoc.Runner1{})
 	default:
 		fmt.Printf("Problem %v not found\n", problem)
 	}
