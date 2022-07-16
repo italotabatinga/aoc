@@ -21,6 +21,8 @@ func main() {
 	switch problem.Day {
 	case 1:
 		src.Run[aoc.Input1](problem, aoc.Runner1{})
+	case 2:
+		src.Run[aoc.Input2](problem, aoc.Runner2{})
 	default:
 		fmt.Printf("Problem %v not found\n", problem)
 	}
