@@ -14,14 +14,13 @@ func main() {
 		panic("Args must not be empty")
 	}
 	isTest := src.Contains(args, "--test")
-	problem := args[len(args)-1]
-	fmt.Printf("Advent of Code 2020 - %v\n", problem)
+	problemString := args[len(args)-1]
+	fmt.Printf("Advent of Code 2020 - %v\n", problemString)
 
-	switch problem {
-	case "1.1":
-		aoc.Run1(src.Part1, isTest)
-	case "1.2":
-		aoc.Run1(src.Part2, isTest)
+	problem := src.ParseProblem(problemString, isTest)
+	switch problem.Day {
+	case 1:
+		src.Run[[]int](problem, aoc.Runner1{})
 	default:
 		fmt.Printf("Problem %v not found\n", problem)
 	}

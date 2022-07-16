@@ -2,35 +2,15 @@ package aoc
 
 import (
 	"fmt"
-	"os"
-	"path"
 	"strconv"
 	"strings"
 
-	"github.com/italotabatinga/aoc/2020/src"
 	"github.com/italotabatinga/aoc/2020/src/collections"
 )
 
-func Run1(part src.Part, isTest bool) {
-	filepath := path.Join("inputs", "1.txt")
-	if isTest {
-		filepath = strings.Replace(filepath, ".txt", "_test.txt", 1)
-	}
-	bytes, err := os.ReadFile(filepath)
-	input := string(bytes)
-	if err != nil {
-		panic(err)
-	}
+type Runner1 struct{}
 
-	switch part {
-	case src.Part1:
-		runner_1(formatInput(input))
-	case src.Part2:
-		runner_2(formatInput(input))
-	}
-}
-
-func formatInput(input string) []int {
+func (r Runner1) FmtInput(input string) []int {
 	inputSlice := strings.Split(input, "\n")
 	var result []int
 	for _, s := range inputSlice {
@@ -43,7 +23,7 @@ func formatInput(input string) []int {
 	return result
 }
 
-func runner_1(input []int) {
+func (r Runner1) Run1(input []int) {
 	set := make(collections.Set[int])
 	for _, v := range input {
 		comp := 2020 - v
@@ -56,7 +36,7 @@ func runner_1(input []int) {
 	}
 }
 
-func runner_2(input []int) {
+func (r Runner1) Run2(input []int) {
 	values := make(collections.Set[int])
 	sums := make(map[int]collections.Tuple[int, int])
 	for _, v := range input {
