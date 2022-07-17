@@ -25,20 +25,21 @@ func (r Runner1) FmtInput(input string) Input1 {
 	return result
 }
 
-func (r Runner1) Run1(input Input1) {
+func (r Runner1) Run1(input Input1) int {
 	set := make(collections.Set[int])
 	for _, v := range input {
 		comp := 2020 - v
 		if set.Contains(comp) {
 			result := comp * v
 			fmt.Printf("%v\n", result)
-			return
+			return result
 		}
 		set.Add(v)
 	}
+	return 0
 }
 
-func (r Runner1) Run2(input Input1) {
+func (r Runner1) Run2(input Input1) int {
 	values := make(collections.Set[int])
 	sums := make(map[int]collections.Tuple[int, int])
 	for _, v := range input {
@@ -49,11 +50,12 @@ func (r Runner1) Run2(input Input1) {
 		if tup, ok := sums[comp]; ok {
 			result := v * tup.First * tup.Second
 			fmt.Printf("%v * %v * %v = %v\n", v, tup.First, tup.Second, result)
-			return
+			return result
 		}
 		for val := range values {
 			sums[val+v] = collections.Tuple[int, int]{First: val, Second: v}
 		}
 		values.Add(v)
 	}
+	return 0
 }

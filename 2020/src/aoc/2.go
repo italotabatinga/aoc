@@ -5,7 +5,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"testing"
 
 	"github.com/italotabatinga/aoc/2020/src/collections"
 )
@@ -42,7 +41,7 @@ func (r Runner2) FmtInput(input string) Input2 {
 	return result
 }
 
-func (r Runner2) Run1(input Input2) {
+func (r Runner2) Run1(input Input2) int {
 	validCount := 0
 	for _, test := range input {
 		if test.isValidRange() {
@@ -50,9 +49,10 @@ func (r Runner2) Run1(input Input2) {
 		}
 	}
 	fmt.Printf("%v\n", validCount)
+	return validCount
 }
 
-func (r Runner2) Run2(input Input2) {
+func (r Runner2) Run2(input Input2) int {
 	validCount := 0
 	for _, test := range input {
 		if test.isValidPosition() {
@@ -60,6 +60,7 @@ func (r Runner2) Run2(input Input2) {
 		}
 	}
 	fmt.Printf("%v\n", validCount)
+	return validCount
 }
 
 type Test struct {

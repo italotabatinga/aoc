@@ -16,8 +16,8 @@ const (
 )
 
 type Runner[R any] interface {
-	Run1(v R)
-	Run2(v R)
+	Run1(v R) int
+	Run2(v R) int
 	FmtInput(s string) R
 }
 
@@ -44,15 +44,17 @@ func findInputFile(p Problem) string {
 	panic(fmt.Sprintf("Missing input file for %v", p))
 }
 
-func Run[R any](problem Problem, runner Runner[R]) {
+func Run[R any](problem Problem, runner Runner[R]) int {
 	stringInput := findInputFile(problem)
 	input := runner.FmtInput(stringInput)
 
 	switch problem.Part {
 	case Part1:
-		runner.Run1(input)
+		return runner.Run1(input)
 	case Part2:
-		runner.Run2(input)
+		return runner.Run2(input)
+	default:
+		return 0
 	}
 }
 
