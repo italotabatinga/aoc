@@ -11,8 +11,8 @@ import (
 type Part int
 
 const (
-	Part1 Part = iota
-	Part2
+	Part1 Part = 1
+	Part2 Part = 2
 )
 
 type Runner[R any] interface {

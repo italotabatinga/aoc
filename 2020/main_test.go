@@ -64,6 +64,23 @@ func TestAoc32(t *testing.T) {
 	runTest(Test{problem: src.Problem{Day: 3, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input3](p, aoc.Runner3{}) }, expected: 2431272960}, t)
 }
 
+func TestAoc41Test(t *testing.T) {
+	runTest(
+		Test{problem: src.Problem{Day: 4, Part: src.Part1, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input4](p, aoc.Runner4{}) }, expected: 2},
+		t,
+	)
+}
+func TestAoc41(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 4, Part: src.Part1, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input4](p, aoc.Runner4{}) }, expected: 202}, t)
+}
+
+func TestAoc42Test(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 4, Part: src.Part2, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input4](p, aoc.Runner4{}) }, expected: 4}, t)
+}
+func TestAoc42(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 4, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input4](p, aoc.Runner4{}) }, expected: 137}, t)
+}
+
 func runTest(test Test, t *testing.T) {
 	got :=
 		test.run(test.problem)
