@@ -52,15 +52,12 @@ func (r Runner8) Run1(cmds Input8) int {
 }
 
 func (r Runner8) Run2(cmds Input8) int {
-	stack := make([]int, len(cmds))
 	acc := 0
 	currCmd := 0
-	corruptedLine := findCorruptedLine(cmds, stack, 0, -1)
+	corruptedLine := findCorruptedLine(cmds)
 	fmt.Printf("corrupted: %v\n", corruptedLine)
-	stack = make([]int, len(cmds))
-	for currCmd < len(cmds) && stack[currCmd] == 0 {
+	for currCmd < len(cmds) {
 		cmd, val := cmds[currCmd].Values()
-		stack[currCmd]++
 		if cmd == "acc" {
 			acc += val
 		}
@@ -70,30 +67,34 @@ func (r Runner8) Run2(cmds Input8) int {
 	return acc
 }
 
-func findCorruptedLine(cmds Input8, stack []int, currLine int, corruptedLine int) int {
-	fmt.Printf("running: %v %v %v\n", currLine+1, corruptedLine+1, stack)
-	if currLine >= len(cmds) {
-		return corruptedLine
-	}
-	if stack[currLine] > 0 {
-		return -1
-	}
-
-	stack[currLine]++
-	cmd, _ := cmds[currLine].Values()
-	nextLine := getNextLine(cmds, currLine, corruptedLine)
-	res := findCorruptedLine(cmds, stack, nextLine, corruptedLine)
-	if res > 0 {
-		return res
-	} else {
-		stack[nextLine]--
-		if cmd == "nop" || cmd == "jmp" {
-			nextLine := getNextLine(cmds, currLine, currLine)
-			return findCorruptedLine(cmds, stack, nextLine, currLine)
-		} else {
-			return -1
+func findCorruptedLine(cmds Input8) int {
+	for line := range cmds {
+		cmd, _ := cmds[line].Values()
+		switch cmd {
+		case "jmp", "nop":
+			if !cmdsHasLoop(cmds, line) {
+				return line
+			}
 		}
 	}
+
+	return -1
+}
+
+func cmdsHasLoop(cmds Input8, corruptedLine int) bool {
+	stack := make([]int, len(cmds))
+
+	line := 0
+	for line < len(cmds) {
+		if stack[line] > 0 {
+			return true
+		}
+		stack[line]++
+
+		line = getNextLine(cmds, line, corruptedLine)
+	}
+
+	return false
 }
 
 func getNextLine(cmds Input8, currLine int, corruptedLine int) int {
