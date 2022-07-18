@@ -32,7 +32,7 @@ func (r Runner4) FmtInput(input string) Input4 {
 	return result
 }
 
-func (r Runner4) Run1(input Input4) int {
+func (r Runner4) Run1(input Input4, _ bool) int {
 	requiredFields := []string{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 	valids := 0
 	for _, passport := range input {
@@ -51,7 +51,7 @@ func (r Runner4) Run1(input Input4) int {
 	return valids
 }
 
-func (r Runner4) Run2(input Input4) int {
+func (r Runner4) Run2(input Input4, _ bool) int {
 	requiredFields := []string{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 	valids := 0
 	for _, passport := range input {

@@ -28,7 +28,7 @@ func (r Runner8) FmtInput(input string) Input8 {
 	return result
 }
 
-func (r Runner8) Run1(cmds Input8) int {
+func (r Runner8) Run1(cmds Input8, _ bool) int {
 	cmdRun := make([]int, len(cmds))
 	acc := 0
 	currCmd := 0
@@ -51,7 +51,7 @@ func (r Runner8) Run1(cmds Input8) int {
 	return acc
 }
 
-func (r Runner8) Run2(cmds Input8) int {
+func (r Runner8) Run2(cmds Input8, _ bool) int {
 	acc := 0
 	currCmd := 0
 	corruptedLine := findCorruptedLine(cmds)

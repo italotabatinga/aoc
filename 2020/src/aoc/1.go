@@ -25,7 +25,7 @@ func (r Runner1) FmtInput(input string) Input1 {
 	return result
 }
 
-func (r Runner1) Run1(input Input1) int {
+func (r Runner1) Run1(input Input1, _ bool) int {
 	set := make(collections.Set[int])
 	for _, v := range input {
 		comp := 2020 - v
@@ -39,7 +39,7 @@ func (r Runner1) Run1(input Input1) int {
 	return 0
 }
 
-func (r Runner1) Run2(input Input1) int {
+func (r Runner1) Run2(input Input1, _ bool) int {
 	values := make(collections.Set[int])
 	sums := make(map[int]collections.Tuple[int, int])
 	for _, v := range input {

@@ -16,8 +16,8 @@ const (
 )
 
 type Runner[R any] interface {
-	Run1(v R) int
-	Run2(v R) int
+	Run1(v R, test bool) int
+	Run2(v R, test bool) int
 	FmtInput(s string) R
 }
 
@@ -50,9 +50,9 @@ func Run[R any](problem Problem, runner Runner[R]) int {
 
 	switch problem.Part {
 	case Part1:
-		return runner.Run1(input)
+		return runner.Run1(input, problem.Test)
 	case Part2:
-		return runner.Run2(input)
+		return runner.Run2(input, problem.Test)
 	default:
 		return 0
 	}

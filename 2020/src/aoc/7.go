@@ -40,7 +40,7 @@ func (r Runner7) FmtInput(input string) Input7 {
 	return result
 }
 
-func (r Runner7) Run1(bags Input7) int {
+func (r Runner7) Run1(bags Input7, _ bool) int {
 	count := 0
 	goalBag := "shiny gold"
 	for bag := range bags {
@@ -52,7 +52,7 @@ func (r Runner7) Run1(bags Input7) int {
 	return count
 }
 
-func (r Runner7) Run2(bags Input7) int {
+func (r Runner7) Run2(bags Input7, _ bool) int {
 	count := countInBag(bags, "shiny gold")
 	fmt.Printf("count: %v\n", count)
 	return count

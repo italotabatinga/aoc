@@ -41,7 +41,7 @@ func (r Runner2) FmtInput(input string) Input2 {
 	return result
 }
 
-func (r Runner2) Run1(input Input2) int {
+func (r Runner2) Run1(input Input2, _ bool) int {
 	validCount := 0
 	for _, test := range input {
 		if test.isValidRange() {
@@ -52,7 +52,7 @@ func (r Runner2) Run1(input Input2) int {
 	return validCount
 }
 
-func (r Runner2) Run2(input Input2) int {
+func (r Runner2) Run2(input Input2, _ bool) int {
 	validCount := 0
 	for _, test := range input {
 		if test.isValidPosition() {

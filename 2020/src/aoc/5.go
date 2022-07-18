@@ -22,7 +22,7 @@ func (r Runner5) FmtInput(input string) Input5 {
 	return result
 }
 
-func (r Runner5) Run1(input Input5) int {
+func (r Runner5) Run1(input Input5, _ bool) int {
 	max := -1
 	for _, bpass := range input {
 		if bpass.id > max {
@@ -33,7 +33,7 @@ func (r Runner5) Run1(input Input5) int {
 	return max
 }
 
-func (r Runner5) Run2(input Input5) int {
+func (r Runner5) Run2(input Input5, _ bool) int {
 	seats := [128][8]bool{}
 	for _, bpass := range input {
 		seats[bpass.row][bpass.col] = true

@@ -33,7 +33,7 @@ func (r Runner3) FmtInput(input string) Input3 {
 	return result
 }
 
-func (r Runner3) Run1(input Input3) int {
+func (r Runner3) Run1(input Input3, _ bool) int {
 	count := 0
 	for y, x := 1, 3; y < len(input); y, x = y+1, x+3 {
 		row := input[y]
@@ -47,7 +47,7 @@ func (r Runner3) Run1(input Input3) int {
 	return count
 }
 
-func (r Runner3) Run2(input Input3) int {
+func (r Runner3) Run2(input Input3, _ bool) int {
 	slopes := []c.Pair[int]{{First: 1, Second: 1}, {First: 1, Second: 3}, {First: 1, Second: 5}, {First: 1, Second: 7}, {First: 2, Second: 1}}
 	treesFound := make([]int, len(slopes))
 

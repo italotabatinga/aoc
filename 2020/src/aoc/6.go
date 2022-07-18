@@ -28,7 +28,7 @@ func (r Runner6) FmtInput(input string) Input6 {
 	return result
 }
 
-func (r Runner6) Run1(input Input6) int {
+func (r Runner6) Run1(input Input6, _ bool) int {
 	sum := 0
 	for _, group := range input {
 		sum += group.anyYesCount()
@@ -37,7 +37,7 @@ func (r Runner6) Run1(input Input6) int {
 	return sum
 }
 
-func (r Runner6) Run2(input Input6) int {
+func (r Runner6) Run2(input Input6, _ bool) int {
 	sum := 0
 	for _, group := range input {
 		sum += group.everyYesCount()
