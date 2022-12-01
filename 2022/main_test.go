@@ -2,6 +2,8 @@ package main
 
 import (
 	"testing"
+
+	"github.com/italotabatinga/aoc/2022/aoc"
 )
 
 type Test struct {
@@ -19,19 +21,21 @@ func runTest(test Test, t *testing.T) {
 	}
 }
 
-// func TestAoc11Test(t *testing.T) {
-// 	runTest(
-// 		Test{problem: src.Problem{Day: 1, Part: src.Part1, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 514579},
-// 		t,
-// 	)
-// }
-// func TestAoc11(t *testing.T) {
-// 	runTest(Test{problem: src.Problem{Day: 1, Part: src.Part1, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 211899}, t)
-// }
+func TestAoc11Test(t *testing.T) {
+	runTest(
+		Test{problem: Problem{Day: 1, Part: Part1, Test: true}, run: func(p Problem) int { return Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 24000},
+		t,
+	)
+}
 
-// func TestAoc12Test(t *testing.T) {
-// 	runTest(Test{problem: src.Problem{Day: 1, Part: src.Part2, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 241861950}, t)
-// }
-// func TestAoc12(t *testing.T) {
-// 	runTest(Test{problem: src.Problem{Day: 1, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 275765682}, t)
-// }
+func TestAoc11(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 1, Part: Part1, Test: false}, run: func(p Problem) int { return Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 70296}, t)
+}
+
+func TestAoc12Test(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 1, Part: Part2, Test: true}, run: func(p Problem) int { return Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 45000}, t)
+}
+
+func TestAoc12(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 1, Part: Part2, Test: false}, run: func(p Problem) int { return Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 205381}, t)
+}

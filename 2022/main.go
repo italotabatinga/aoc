@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/italotabatinga/aoc/2022/aoc"
 )
 
 func main() {
@@ -16,8 +18,8 @@ func main() {
 
 	problem := ParseProblem(problemString, isTest)
 	switch problem.Day {
-	// case 1:
-	// 	Run[aoc.Input1](problem, aoc.Runner1{})
+	case 1:
+		Run[aoc.Input1](problem, aoc.Runner1{})
 	default:
 		fmt.Printf("Problem %v not found\n", problem)
 	}
