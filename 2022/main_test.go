@@ -39,3 +39,22 @@ func TestAoc12Test(t *testing.T) {
 func TestAoc12(t *testing.T) {
 	runTest(Test{problem: Problem{Day: 1, Part: Part2, Test: false}, run: func(p Problem) int { return Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 205381}, t)
 }
+
+func TestAoc21Test(t *testing.T) {
+	runTest(
+		Test{problem: Problem{Day: 2, Part: Part1, Test: true}, run: func(p Problem) int { return Run[aoc.Input2](p, aoc.Runner2{}) }, expected: 15},
+		t,
+	)
+}
+
+func TestAoc21(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 2, Part: Part1, Test: false}, run: func(p Problem) int { return Run[aoc.Input2](p, aoc.Runner2{}) }, expected: 11841}, t)
+}
+
+func TestAoc22Test(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 2, Part: Part2, Test: true}, run: func(p Problem) int { return Run[aoc.Input2](p, aoc.Runner2{}) }, expected: 12}, t)
+}
+
+func TestAoc22(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 2, Part: Part2, Test: false}, run: func(p Problem) int { return Run[aoc.Input2](p, aoc.Runner2{}) }, expected: 13022}, t)
+}
