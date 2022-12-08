@@ -13,6 +13,15 @@ type Test struct {
 	expected int
 }
 
+func runTest(test Test, t *testing.T) {
+	got :=
+		test.run(test.problem)
+
+	if got != test.expected {
+		t.Errorf("Problem %v - got: %v; expected: %v", test.problem, got, test.expected)
+	}
+}
+
 func TestAoc11Test(t *testing.T) {
 	runTest(
 		Test{problem: src.Problem{Day: 1, Part: src.Part1, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input1](p, aoc.Runner1{}) }, expected: 514579},
@@ -149,11 +158,21 @@ func TestAoc92(t *testing.T) {
 	runTest(Test{problem: src.Problem{Day: 9, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input9](p, aoc.Runner9{}) }, expected: 31580383}, t)
 }
 
-func runTest(test Test, t *testing.T) {
-	got :=
-		test.run(test.problem)
+func TestAoc111Test(t *testing.T) {
+	runTest(
+		Test{problem: src.Problem{Day: 11, Part: src.Part1, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 37},
+		t,
+	)
+}
 
-	if got != test.expected {
-		t.Errorf("Problem %v - got: %v; expected: %v", test.problem, got, test.expected)
-	}
+func TestAoc111(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 11, Part: src.Part1, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 2468}, t)
+}
+
+func TestAoc112Test(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 11, Part: src.Part2, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 26}, t)
+}
+
+func TestAoc112(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 11, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 1260}, t)
 }
