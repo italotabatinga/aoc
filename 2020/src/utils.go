@@ -96,3 +96,11 @@ func Contains[V comparable](s []V, v V) bool {
 	}
 	return false
 }
+
+func Abs(x int) int {
+	if x >= 0 {
+		return x
+	}
+
+	return -x
+}

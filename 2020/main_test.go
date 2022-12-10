@@ -174,5 +174,24 @@ func TestAoc112Test(t *testing.T) {
 }
 
 func TestAoc112(t *testing.T) {
-	runTest(Test{problem: src.Problem{Day: 11, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 1260}, t)
+	runTest(Test{problem: src.Problem{Day: 11, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 2214}, t)
+}
+
+func TestAoc121Test(t *testing.T) {
+	runTest(
+		Test{problem: src.Problem{Day: 12, Part: src.Part1, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 25},
+		t,
+	)
+}
+
+func TestAoc121(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 12, Part: src.Part1, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 923}, t)
+}
+
+func TestAoc122Test(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 12, Part: src.Part2, Test: true}, run: func(p src.Problem) int { return src.Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 286}, t)
+}
+
+func TestAoc122(t *testing.T) {
+	runTest(Test{problem: src.Problem{Day: 12, Part: src.Part2, Test: false}, run: func(p src.Problem) int { return src.Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 24769}, t)
 }
