@@ -48,13 +48,11 @@ func (r Runner7) Run1(bags Input7, _ bool) int {
 			count++
 		}
 	}
-	fmt.Printf("count: %v\n", count)
 	return count
 }
 
 func (r Runner7) Run2(bags Input7, _ bool) int {
 	count := countInBag(bags, "shiny gold")
-	fmt.Printf("count: %v\n", count)
 	return count
 }
 

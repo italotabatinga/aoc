@@ -47,7 +47,6 @@ func (r Runner8) Run1(cmds Input8, _ bool) int {
 			panic(fmt.Errorf("unexpected cmd: %v", cmd))
 		}
 	}
-	fmt.Printf("acc: %v\n", acc)
 	return acc
 }
 
@@ -55,7 +54,6 @@ func (r Runner8) Run2(cmds Input8, _ bool) int {
 	acc := 0
 	currCmd := 0
 	corruptedLine := findCorruptedLine(cmds)
-	fmt.Printf("corrupted: %v\n", corruptedLine)
 	for currCmd < len(cmds) {
 		cmd, val := cmds[currCmd].Values()
 		if cmd == "acc" {
@@ -63,7 +61,6 @@ func (r Runner8) Run2(cmds Input8, _ bool) int {
 		}
 		currCmd = getNextLine(cmds, currCmd, corruptedLine)
 	}
-	fmt.Printf("acc: %v\n", acc)
 	return acc
 }
 

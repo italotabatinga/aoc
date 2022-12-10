@@ -37,7 +37,6 @@ func (r Runner10) Run1(adapters Input10, test bool) int {
 	}
 	diffs[2]++
 	result := diffs[0] * diffs[2]
-	fmt.Printf("%v, dfs: %v\n", result, diffs)
 	return result
 }
 

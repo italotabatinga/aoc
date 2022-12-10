@@ -48,7 +48,6 @@ func (r Runner2) Run1(input Input2, _ bool) int {
 			validCount++
 		}
 	}
-	fmt.Printf("%v\n", validCount)
 	return validCount
 }
 
@@ -59,7 +58,6 @@ func (r Runner2) Run2(input Input2, _ bool) int {
 			validCount++
 		}
 	}
-	fmt.Printf("%v\n", validCount)
 	return validCount
 }
 

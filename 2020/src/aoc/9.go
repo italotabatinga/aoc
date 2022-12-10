@@ -36,7 +36,6 @@ func (r Runner9) Run1(nums Input9, test bool) int {
 	for i := preamble; i < len(nums); i++ {
 		slice := nums[i-preamble : i]
 		if val := nums[i]; !hasTwoSum(slice, val) {
-			fmt.Printf("Found %v!\n", val)
 			return val
 		}
 	}
@@ -71,7 +70,7 @@ func (r Runner9) Run2(nums Input9, test bool) int {
 
 			if sum == invalid {
 				x := smallest(list) + largest(list)
-				fmt.Printf("Found %v!\n", x)
+				// fmt.Printf("Found %v!\n", x)
 				return x
 			}
 		}

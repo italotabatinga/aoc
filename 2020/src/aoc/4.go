@@ -47,7 +47,6 @@ func (r Runner4) Run1(input Input4, _ bool) int {
 			valids++
 		}
 	}
-	fmt.Printf("Valids: %v\n", valids)
 	return valids
 }
 
@@ -75,7 +74,6 @@ func (r Runner4) Run2(input Input4, _ bool) int {
 			valids++
 		}
 	}
-	fmt.Printf("Valids: %v\n", valids)
 	return valids
 }
 

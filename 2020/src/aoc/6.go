@@ -1,7 +1,6 @@
 package aoc
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -33,7 +32,6 @@ func (r Runner6) Run1(input Input6, _ bool) int {
 	for _, group := range input {
 		sum += group.anyYesCount()
 	}
-	fmt.Printf("Sum: %v", sum)
 	return sum
 }
 
@@ -42,7 +40,6 @@ func (r Runner6) Run2(input Input6, _ bool) int {
 	for _, group := range input {
 		sum += group.everyYesCount()
 	}
-	fmt.Printf("Sum: %v", sum)
 	return sum
 }
 

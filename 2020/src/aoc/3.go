@@ -43,7 +43,6 @@ func (r Runner3) Run1(input Input3, _ bool) int {
 			count++
 		}
 	}
-	fmt.Printf("Total trees: %v\n", count)
 	return count
 }
 
@@ -66,7 +65,5 @@ func (r Runner3) Run2(input Input3, _ bool) int {
 	for _, count := range treesFound {
 		result *= count
 	}
-	fmt.Printf("Trees: %v\n", treesFound)
-	fmt.Printf("Result: %v\n", result)
 	return result
 }
