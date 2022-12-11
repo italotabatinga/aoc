@@ -25,7 +25,7 @@ func (r Runner8) FmtInput(input string) Input8 {
 func (r Runner8) Run1(input Input8, _ bool) int {
 	count := 0
 	for i, row := range input {
-		for j, _ := range row {
+		for j := range row {
 			if input.treeIsVisible(i, j) {
 				count++
 			}

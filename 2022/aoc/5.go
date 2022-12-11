@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	. "github.com/italotabatinga/aoc/2022/aoc/structures"
+	c "github.com/italotabatinga/aoc/2022/aoc/structures"
 )
 
 type Input5 struct {
-	stacks    []Stack[rune]
+	stacks    []c.Stack[rune]
 	movements []CrateMovement
 }
 
@@ -21,12 +21,12 @@ func (r Runner5) FmtInput(input string) Input5 {
 	stacksStrings := strings.Split(inputString[0], "\n")
 
 	result := Input5{}
-	result.stacks = make([]Stack[rune], 0)
+	result.stacks = make([]c.Stack[rune], 0)
 	numStacks := (len(stacksStrings[0]) + 1) / 4
 
 	for i := 0; i < numStacks; i++ {
 		column := i*4 + 1
-		stack := NewStack[rune]()
+		stack := c.NewStack[rune]()
 
 		for j := len(stacksStrings) - 2; j >= 0; j-- {
 			line := stacksStrings[j]
