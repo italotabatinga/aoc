@@ -33,7 +33,9 @@ func main() {
 	case 7:
 		Run[aoc.Input7](problem, aoc.Runner7{})
 	case 8:
-		Run[aoc.Input7](problem, aoc.Runner7{})
+		Run[aoc.Input8](problem, aoc.Runner8{})
+	case 9:
+		Run[aoc.Input9](problem, aoc.Runner9{})
 	default:
 		fmt.Printf("Problem %v not found\n", problem)
 	}
