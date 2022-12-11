@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	c "github.com/italotabatinga/aoc/2022/aoc/structures"
+	c "github.com/italotabatinga/aoc/2022/aoc/collections"
 )
 
 type Input5 struct {

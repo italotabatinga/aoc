@@ -1,4 +1,4 @@
-package structures
+package collections
 
 type Tuple[F, S any] struct {
 	First  F

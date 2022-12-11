@@ -1,4 +1,4 @@
-package structures
+package collections
 
 import (
 	"fmt"

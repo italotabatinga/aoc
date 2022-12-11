@@ -3,7 +3,7 @@ package aoc
 import (
 	"strings"
 
-	c "github.com/italotabatinga/aoc/2022/aoc/structures"
+	c "github.com/italotabatinga/aoc/2022/aoc/collections"
 )
 
 type Input8 [][]int
