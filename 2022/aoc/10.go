@@ -2,7 +2,6 @@ package aoc
 
 import (
 	"fmt"
-	"hash/fnv"
 	"strconv"
 	"strings"
 )
@@ -68,9 +67,7 @@ func (r Runner10) Run2(input Input10, _ bool) int {
 	}
 
 	// fmt.Printf("Displayyy\n%v\n", clock.PrintDisplay())
-	h := fnv.New32a()
-	h.Write([]byte(clock.PrintDisplay()))
-	return int(h.Sum32())
+	return StringToInt(clock.PrintDisplay())
 }
 
 type ClockCircuit struct {

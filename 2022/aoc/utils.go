@@ -1,6 +1,10 @@
 package aoc
 
-import "golang.org/x/exp/constraints"
+import (
+	"hash/fnv"
+
+	"golang.org/x/exp/constraints"
+)
 
 func Sort[V any, C constraints.Ordered](a []V, f func(V) C) {
 	quickSort(a, 0, len(a)-1, f)
@@ -41,4 +45,10 @@ func Abs[T constraints.Integer](x T) T {
 	}
 
 	return -x
+}
+
+func StringToInt(str string) int {
+	h := fnv.New32a()
+	h.Write([]byte(str))
+	return int(h.Sum32())
 }

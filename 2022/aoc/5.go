@@ -2,7 +2,6 @@ package aoc
 
 import (
 	"fmt"
-	"hash/fnv"
 	"strconv"
 	"strings"
 
@@ -72,9 +71,7 @@ func (r Runner5) Run1(input Input5, _ bool) int {
 		}
 	}
 
-	h := fnv.New32a()
-	h.Write([]byte(sb.String()))
-	return int(h.Sum32())
+	return StringToInt(sb.String())
 }
 
 func (r Runner5) Run2(input Input5, _ bool) int {
@@ -93,9 +90,7 @@ func (r Runner5) Run2(input Input5, _ bool) int {
 		}
 	}
 
-	h := fnv.New32a()
-	h.Write([]byte(sb.String()))
-	return int(h.Sum32())
+	return StringToInt(sb.String())
 }
 
 type CrateMovement struct {
