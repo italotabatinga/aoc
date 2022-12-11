@@ -34,3 +34,11 @@ func partition[V any, C constraints.Ordered](a []V, low int, high int, f func(V)
 	a[high] = tmp
 	return i + 1
 }
+
+func Abs[T constraints.Integer](x T) T {
+	if x > 0 {
+		return x
+	}
+
+	return -x
+}
