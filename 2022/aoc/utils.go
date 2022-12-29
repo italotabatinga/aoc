@@ -2,6 +2,7 @@ package aoc
 
 import (
 	"hash/fnv"
+	"math"
 
 	"golang.org/x/exp/constraints"
 )
@@ -45,6 +46,17 @@ func Abs[T constraints.Integer](x T) T {
 	}
 
 	return -x
+}
+
+func Min(elems ...int) int {
+	min := math.MaxInt
+	for _, elem := range elems {
+		if elem < min {
+			min = elem
+		}
+	}
+
+	return min
 }
 
 func StringToInt(str string) int {

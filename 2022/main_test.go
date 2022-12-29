@@ -226,3 +226,19 @@ func TestAoc112Test(t *testing.T) {
 func TestAoc112(t *testing.T) {
 	runTest(Test{problem: Problem{Day: 11, Part: Part2, Test: false}, run: func(p Problem) int { return Run[aoc.Input11](p, aoc.Runner11{}) }, expected: 20567144694}, t)
 }
+
+func TestAoc121Test(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 12, Part: Part1, Test: true}, run: func(p Problem) int { return Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 31}, t)
+}
+
+func TestAoc121(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 12, Part: Part1, Test: false}, run: func(p Problem) int { return Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 425}, t)
+}
+
+func TestAoc122Test(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 12, Part: Part2, Test: true}, run: func(p Problem) int { return Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 29}, t)
+}
+
+func TestAoc122(t *testing.T) {
+	runTest(Test{problem: Problem{Day: 12, Part: Part2, Test: false}, run: func(p Problem) int { return Run[aoc.Input12](p, aoc.Runner12{}) }, expected: 418}, t)
+}
