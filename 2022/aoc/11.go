@@ -126,7 +126,7 @@ func (ka KeepAway) MonkeyBusiness() int {
 		inspectedCounts = append(inspectedCounts, monkey.countInspected)
 	}
 
-	Sort(inspectedCounts, func(x int) int { return x })
+	Sort(inspectedCounts, func(a, b int) int { return Compare(b, a) })
 	return inspectedCounts[len(inspectedCounts)-1] * inspectedCounts[len(inspectedCounts)-2]
 }
 

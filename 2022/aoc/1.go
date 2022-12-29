@@ -48,7 +48,7 @@ func (r Runner1) Run1(input Input1, _ bool) int {
 }
 
 func (r Runner1) Run2(input Input1, _ bool) int {
-	Sort(input, func(e Elf) int { return e.totalCalories })
+	Sort(input, func(l, r Elf) int { return Compare(r.totalCalories, l.totalCalories) })
 
 	topThree := 0
 	for i := 0; i < len(input) && i < 3; i++ {
