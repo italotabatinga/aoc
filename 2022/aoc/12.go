@@ -42,19 +42,19 @@ func (r Runner12) FmtInput(input string) Input12 {
 
 func (r Runner12) Run1(input Input12, _ bool) int {
 	area := SurroundingArea(input)
-	cost := area.newCost(area.src.First, area.src.Second)
-	area.calculateCosts(area.src.First, area.src.Second, &cost)
+	cost := area.newCost(area.dst.First, area.dst.Second)
+	area.calculateCosts(area.dst.First, area.dst.Second, &cost)
 
-	return cost[area.dst.First][area.dst.Second]
+	return cost[area.src.First][area.src.Second]
 }
 
 func (r Runner12) Run2(input Input12, _ bool) int {
 	area := SurroundingArea(input)
 	costs := []int{}
+	cost := area.newCost(area.dst.First, area.dst.Second)
+	area.calculateCosts(area.dst.First, area.dst.Second, &cost)
 	for _, src := range area.srcs {
-		cost := area.newCost(src.First, src.Second)
-		area.calculateCosts(src.First, src.Second, &cost)
-		costs = append(costs, cost[area.dst.First][area.dst.Second])
+		costs = append(costs, cost[src.First][src.Second])
 	}
 
 	return Min(costs...)
@@ -68,26 +68,26 @@ type SurroundingArea struct {
 	dst  c.Pair[int]
 }
 
-func (s SurroundingArea) possibleNextSteps(x int, y int) []c.Pair[int] {
+func (s SurroundingArea) possiblePrevSteps(x int, y int) []c.Pair[int] {
 	curr := s.hmap[x][y]
 	possibilities := []c.Pair[int]{}
 	if x > 0 {
-		if next := s.hmap[x-1][y]; int(next-curr) <= 1 {
+		if prev := s.hmap[x-1][y]; int(curr-prev) <= 1 {
 			possibilities = append(possibilities, c.Pair[int]{First: x - 1, Second: y})
 		}
 	}
 	if x < s.size.First-1 {
-		if next := s.hmap[x+1][y]; int(next-curr) <= 1 {
+		if prev := s.hmap[x+1][y]; int(curr-prev) <= 1 {
 			possibilities = append(possibilities, c.Pair[int]{First: x + 1, Second: y})
 		}
 	}
 	if y > 0 {
-		if next := s.hmap[x][y-1]; int(next-curr) <= 1 {
+		if prev := s.hmap[x][y-1]; int(curr-prev) <= 1 {
 			possibilities = append(possibilities, c.Pair[int]{First: x, Second: y - 1})
 		}
 	}
 	if y < s.size.Second-1 {
-		if next := s.hmap[x][y+1]; int(next-curr) <= 1 {
+		if prev := s.hmap[x][y+1]; int(curr-prev) <= 1 {
 			possibilities = append(possibilities, c.Pair[int]{First: x, Second: y + 1})
 		}
 	}
@@ -96,7 +96,7 @@ func (s SurroundingArea) possibleNextSteps(x int, y int) []c.Pair[int] {
 }
 
 func (s SurroundingArea) calculateCosts(x int, y int, cost *[][]int) {
-	possibilitites := s.possibleNextSteps(x, y)
+	possibilitites := s.possiblePrevSteps(x, y)
 	for _, possibility := range possibilitites {
 		currCost := (*cost)[x][y]
 		currPossibilityCost := (*cost)[possibility.First][possibility.Second]
@@ -108,13 +108,13 @@ func (s SurroundingArea) calculateCosts(x int, y int, cost *[][]int) {
 	}
 }
 
-func (s SurroundingArea) newCost(initX int, initY int) [][]int {
+func (s SurroundingArea) newCost(dstX int, dstY int) [][]int {
 	cost := make([][]int, s.size.First)
 	for i := range cost {
 		cost[i] = make([]int, s.size.Second)
 
 		for j := 0; j < s.size.Second; j++ {
-			if i == initX && j == initY {
+			if i == dstX && j == dstY {
 				cost[i][j] = 0
 			} else {
 				cost[i][j] = math.MaxInt
