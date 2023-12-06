@@ -20,5 +20,7 @@ typedef struct
 Problem parseProblem(int argc, char *argv[]);
 FILE *readInput(Problem *problem);
 
-char *problem11(FILE* file);
-char *problem12(FILE* file);
+void problem11(FILE* file);
+void problem12(FILE* file);
+void problem21(FILE* file);
+void problem22(FILE* file);

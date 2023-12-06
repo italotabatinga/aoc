@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_BUFFER_SIZE 256
-
 Problem parseProblem(int argc, char *argv[]) {
     Problem problem;
     problem.test = FALSE;
@@ -57,7 +55,7 @@ FILE *readInput(Problem *problem) {
     return file;
 }
 
-char *problem11(FILE *file) {
+void problem11(FILE *file) {
     char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
 
     int sum = 0;
@@ -88,11 +86,10 @@ char *problem11(FILE *file) {
         sum += firstDigit * 10 + lastDigit;
     }
     printf("sum: %d\n", sum);
-
-    return NULL;
+    free(line);
 }
 
-char *problem12(FILE *file) {
+void problem12(FILE *file) {
     char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
 
     int sum = 0;
@@ -147,6 +144,153 @@ char *problem12(FILE *file) {
         sum += firstDigit * 10 + lastDigit;
     }
     printf("sum: %d\n", sum);
+    free(line);
+}
 
-    return NULL;
+typedef struct
+{
+    int green;
+    int red;
+    int blue;
+} GameSet;
+
+void problem21(FILE *file) {
+    char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
+
+    int sum = 0;
+    while (fgets(line, MAX_BUFFER_SIZE, file)) {
+        int len = strlen(line);
+        char *it = line;
+        if (line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+            len -= 1;
+        }
+        it += 5;
+        char *colon = strchr(it, ':');
+        int gameId = natoi(it, colon - it);
+        it = colon + 2;
+
+#ifdef DEBUG_EXEC
+        printf("line  : %s\ngameId: %d\n", line, gameId);
+#endif
+        int setSize = countnchar(it, strlen(it), ';') + 1;
+        GameSet *sets = (GameSet *)malloc(setSize * sizeof(GameSet));
+
+        int hasInvalidSet = FALSE;
+        for (int i = 0; i < setSize; i++) {
+            sets[i].green = sets[i].red = sets[i].blue = 0;
+            char *semicolon = strchr(it, ';');
+            if (semicolon == NULL) {
+                semicolon = it + strlen(it);
+            }
+            while (*it != ';' && *it != '\0') {
+                char *sep = strchr(it, ' ');
+                int count = natoi(it, sep - it);
+                it = sep + 1;
+                switch (*it) {
+                case 'r':
+                    sets[i].red = count;
+                    it += 3;
+                    break;
+                case 'g':
+                    sets[i].green = count;
+                    it += 5;
+                    break;
+                case 'b':
+                    sets[i].blue = count;
+                    it += 4;
+                    break;
+                }
+            }
+
+            if (sets[i].red > 12 || sets[i].green > 13 || sets[i].blue > 14) {
+                hasInvalidSet = TRUE;
+            }
+#ifdef DEBUG_EXEC
+            printf("\tset[%d]: %d,%d,%d\n", i, sets[i].red, sets[i].green, sets[i].blue);
+#endif
+            it++;
+        }
+
+        if (!hasInvalidSet) {
+            sum += gameId;
+        }
+
+        free(sets);
+    }
+    printf("sum: %d\n", sum);
+    free(line);
+}
+
+void problem22(FILE *file) {
+    char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
+
+    int sum = 0;
+    while (fgets(line, MAX_BUFFER_SIZE, file)) {
+        int len = strlen(line);
+        char *it = line;
+        if (line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+            len -= 1;
+        }
+        it += 5;
+        char *colon = strchr(it, ':');
+        int gameId = natoi(it, colon - it);
+        it = colon + 2;
+
+#ifdef DEBUG_EXEC
+        printf("line  : %s\ngameId: %d\n", line, gameId);
+#endif
+        int setSize = countnchar(it, strlen(it), ';') + 1;
+        GameSet *sets = (GameSet *)malloc(setSize * sizeof(GameSet));
+
+        int maxRed = 0, maxGreen = 0, maxBlue = 0;
+        for (int i = 0; i < setSize; i++) {
+            sets[i].green = sets[i].red = sets[i].blue = 0;
+            char *semicolon = strchr(it, ';');
+            if (semicolon == NULL) {
+                semicolon = it + strlen(it);
+            }
+            while (*it != ';' && *it != '\0') {
+                char *sep = strchr(it, ' ');
+                int count = natoi(it, sep - it);
+                it = sep + 1;
+                switch (*it) {
+                case 'r':
+                    if (count > maxRed) {
+                        maxRed = count;
+                    }
+                    sets[i].red = count;
+                    it += 3;
+                    break;
+                case 'g':
+                    if (count > maxGreen) {
+                        maxGreen = count;
+                    }
+                    sets[i].green = count;
+                    it += 5;
+                    break;
+                case 'b':
+                    if (count > maxBlue) {
+                        maxBlue = count;
+                    }
+                    sets[i].blue = count;
+                    it += 4;
+                    break;
+                }
+            }
+
+#ifdef DEBUG_EXEC
+            printf("\tset[%d]: %d,%d,%d\n", i, sets[i].red, sets[i].green, sets[i].blue);
+#endif
+            it++;
+        }
+
+        int power = maxRed * maxGreen * maxBlue;
+        sum += power;
+
+        free(sets);
+    }
+    printf("sum: %d\n", sum);
+    free(line);
 }
