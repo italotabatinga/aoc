@@ -85,7 +85,7 @@ void problem11(FILE *file) {
 
         sum += firstDigit * 10 + lastDigit;
     }
-    printf("sum: %d\n", sum);
+    printf("%d\n", sum);
     free(line);
 }
 
@@ -143,7 +143,7 @@ void problem12(FILE *file) {
 
         sum += firstDigit * 10 + lastDigit;
     }
-    printf("sum: %d\n", sum);
+    printf("%d\n", sum);
     free(line);
 }
 
@@ -218,7 +218,7 @@ void problem21(FILE *file) {
 
         free(sets);
     }
-    printf("sum: %d\n", sum);
+    printf("%d\n", sum);
     free(line);
 }
 
@@ -291,6 +291,6 @@ void problem22(FILE *file) {
 
         free(sets);
     }
-    printf("sum: %d\n", sum);
+    printf("%d\n", sum);
     free(line);
 }
