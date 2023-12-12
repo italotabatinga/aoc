@@ -14,6 +14,10 @@ int main(int argc, char *argv[]) {
         problem21(input);
     } else if (problem.day == 2 && problem.part == 2) {
         problem22(input);
+    } else if (problem.day == 3 && problem.part == 1) {
+        problem31(input);
+    } else if (problem.day == 3 && problem.part == 2) {
+        problem32(input);
     } else {
         printf("Invalid day\n");
         return 1;

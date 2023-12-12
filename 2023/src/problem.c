@@ -235,10 +235,10 @@ void problem22(FILE *file) {
         }
         it += 5;
         char *colon = strchr(it, ':');
-        int gameId = natoi(it, colon - it);
         it = colon + 2;
 
 #ifdef DEBUG_EXEC
+        int gameId = natoi(it, colon - it);
         printf("line  : %s\ngameId: %d\n", line, gameId);
 #endif
         int setSize = countnchar(it, strlen(it), ';') + 1;
@@ -293,4 +293,166 @@ void problem22(FILE *file) {
     }
     printf("%d\n", sum);
     free(line);
+}
+
+void problem31(FILE *file) {
+    char **lines = (char **)malloc(200 * sizeof(char *));
+    int linesSize = 0;
+    int sum = 0;
+    while (!feof(file)) {
+        char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
+        fgets(line, MAX_BUFFER_SIZE, file);
+        int len = strlen(line);
+        if (line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+        }
+        lines[linesSize++] = line;
+    }
+
+#ifdef DEBUG_EXEC
+    for (int i = 0; i < linesSize; i++) {
+        printf("% 4d: %s\n", strlen(lines[i]), lines[i]);
+    }
+#endif
+
+    int number = -1;
+    int hasCloseSymbol = 0;
+
+    for (int i = 0; i < linesSize; i++) {
+        char *line = lines[i];
+        int len = strlen(line);
+        for (int j = 0; j < len; j++) {
+            int jIsNumber = line[j] >= '0' && line[j] <= '9';
+            if (jIsNumber) {
+                if (number == -1) {
+                    number = line[j] - '0';
+                } else {
+                    number = number * 10 + line[j] - '0';
+                }
+            }
+
+            int directions[8][2] = {
+                {-1, 0},  // Up
+                {1, 0},   // Down
+                {0, -1},  // Left
+                {0, 1},   // Right
+                {-1, -1}, // Up Left
+                {-1, 1},  // Up Right
+                {1, -1},  // Down Left
+                {1, 1}    // Down Right
+            };
+
+            if (number > 0 && hasCloseSymbol <= 0) {
+                for (size_t k = 0; k < 8; k++) {
+                    int x = i + directions[k][0];
+                    int y = j + directions[k][1];
+                    if (x >= 0 && x < linesSize && y >= 0 && y < len) {
+                        char c = lines[x][y];
+
+                        if (c != '.' && (c < '0' || c > '9')) {
+                            hasCloseSymbol = 1;
+                        }
+                    }
+                }
+            }
+
+            if (number != -1 && (j == len - 1 || !(line[j + 1] >= '0' && line[j + 1] <= '9'))) {
+#ifdef DEBUG_EXEC
+                printf("number: %d, %d\n", number, hasCloseSymbol);
+#endif
+                if (hasCloseSymbol) {
+                    sum += number;
+                }
+                number = -1;
+                hasCloseSymbol = 0;
+            }
+        }
+    }
+    printf("%d\n", sum);
+    for (int i = 0; i < linesSize; i++) {
+        free(lines[i]);
+    }
+    free(lines);
+}
+
+void problem32(FILE *file) {
+    const int ARRAY_SIZE = 200;
+    char **lines = (char **)malloc(ARRAY_SIZE * sizeof(char *));
+    int gearCount[ARRAY_SIZE][ARRAY_SIZE];
+    int gearRatio[ARRAY_SIZE][ARRAY_SIZE];
+    int linesSize = 0;
+    int sum = 0;
+
+    for (size_t i = 0; i < ARRAY_SIZE; i++) {
+        for (size_t j = 0; j < ARRAY_SIZE; j++) {
+            gearCount[i][j] = gearRatio[i][j] = 0;
+        }
+    }
+
+    while (!feof(file)) {
+        char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
+        fgets(line, MAX_BUFFER_SIZE, file);
+        int len = strlen(line);
+        if (line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+        }
+        lines[linesSize] = line;
+        linesSize++;
+    }
+
+#ifdef DEBUG_EXEC
+    for (int i = 0; i < linesSize; i++) {
+        printf("% 4d: %s\n", strlen(lines[i]), lines[i]);
+    }
+#endif
+
+    int number = -1, numberStart = -1, numberEnd = -1;
+
+    for (int i = 0; i < linesSize; i++) {
+        char *line = lines[i];
+        int len = strlen(line);
+        for (int j = 0; j < len; j++) {
+            int jIsNumber = isNumber(line[j]);
+            if (jIsNumber) {
+                if (number == -1) {
+                    number = line[j] - '0';
+                    numberStart = j;
+                } else {
+                    number = number * 10 + line[j] - '0';
+                }
+            }
+
+            if (number > -1 && (j == len - 1 || !isNumber(line[j + 1]))) {
+                numberEnd = j;
+
+                for (int y = i - 1; y <= i + 1; y++) {
+                    for (int x = numberStart - 1; x <= numberEnd + 1; x++) {
+                        if (y >= 0 && y < linesSize && x >= 0 && x < len && lines[y][x] == '*') {
+
+                            gearCount[y][x]++;
+                            if (gearRatio[y][x] == 0) {
+                                gearRatio[y][x] = 1;
+                            }
+                            gearRatio[y][x] *= number;
+                        }
+                    }
+                }
+
+                number = numberStart = numberEnd = -1;
+            }
+        }
+    }
+
+    for (int i = 0; i < linesSize; i++) {
+        for (int j = 0; j < linesSize; j++) {
+            if (gearCount[i][j] == 2) {
+                sum += gearRatio[i][j];
+            }
+        }
+    }
+    printf("%d\n", sum);
+    for (int i = 0; i < linesSize; i++) {
+        free(lines[i]);
+    }
+    free(lines);
 }

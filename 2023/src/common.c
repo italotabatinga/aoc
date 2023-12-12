@@ -18,3 +18,7 @@ int countnchar(char *str, int len, char c) {
     }
     return count;
 }
+
+int isNumber(char c) {
+    return c >= '0' && c <= '9';
+}
