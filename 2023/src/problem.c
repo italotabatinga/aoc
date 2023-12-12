@@ -1,5 +1,6 @@
 #include "problem.h"
 #include "common.h"
+#include "vec.h"
 
 #include <regex.h>
 #include <stdio.h>
@@ -455,4 +456,182 @@ void problem32(FILE *file) {
         free(lines[i]);
     }
     free(lines);
+}
+
+void problem41(FILE *file) {
+    const int ARRAY_SIZE = 205;
+    char **lines = (char **)malloc(ARRAY_SIZE * sizeof(char *));
+    int linesSize = 0;
+    int sum = 0;
+
+    VEC_NEW(winning);
+    VEC_NEW(picked);
+
+    while (!feof(file)) {
+        char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
+        fgets(line, MAX_BUFFER_SIZE, file);
+        int len = strlen(line);
+        if (line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+        }
+        lines[linesSize] = line;
+        linesSize++;
+    }
+
+    for (int i = 0; i < linesSize; i++) {
+        VEC_CLR(winning);
+        VEC_CLR(picked);
+
+        char *line = lines[i];
+        char *colon = strchr(line, ':');
+        char *verticalBar = strchr(colon, '|');
+        char *it = colon + 2;
+
+        while (it < verticalBar) {
+            int nextNumber = strcspn(it, "1234567890");
+            char *nextSpace = strchr(it + nextNumber, ' ');
+            int number = natoi(it + nextNumber, nextSpace - it - nextNumber);
+            VEC_ADD(winning, number);
+            it = nextSpace + 1;
+        }
+        it = verticalBar + 2;
+        while (it < line + strlen(line)) {
+            int nextNumber = strcspn(it, "1234567890");
+            char *nextSpace = strchr(it + nextNumber, ' ');
+            if (nextSpace == NULL) {
+                nextSpace = it + strlen(it);
+            }
+            int number = natoi(it + nextNumber, nextSpace - it - nextNumber);
+            VEC_ADD(picked, number);
+            it = nextSpace + 1;
+        }
+#ifdef DEBUG_EXEC
+        printf("%s\n", line);
+        printf("\twinning %s -- ", VEC_STR(winning));
+        for (int j = 0; j < VEC_LEN(winning); j++) {
+            printf("%d ", VEC_GET(winning, int, j));
+        }
+        printf("\n\tpicked %s -- \t", VEC_STR(picked));
+        for (int j = 0; j < VEC_LEN(picked); j++) {
+            printf("%d ", VEC_GET(picked, int, j));
+        }
+        printf("\n");
+#endif
+
+        int score = 0;
+        for (int j = 0; j < VEC_LEN(winning); j++) {
+            int number = VEC_GET(winning, int, j);
+            int hasNumber = FALSE;
+            for (int k = 0; k < VEC_LEN(picked); k++) {
+                if (number == VEC_GET(picked, int, k)) {
+                    if (score == 0) {
+                        score = 1;
+                    } else {
+                        score *= 2;
+                    }
+                    break;
+                }
+            }
+        }
+
+        sum += score;
+    }
+
+    printf("%d\n", sum);
+}
+
+void problem42(FILE *file) {
+    const int ARRAY_SIZE = 205;
+    char **lines = (char **)malloc(ARRAY_SIZE * sizeof(char *));
+    int countCards[ARRAY_SIZE];
+    for (size_t i = 0; i < ARRAY_SIZE; i++) {
+        countCards[i] = 0;
+    }
+    int linesSize = 0;
+    int sum = 0;
+
+    VEC_NEW(winning);
+    VEC_NEW(picked);
+
+    while (!feof(file)) {
+        char *line = (char *)malloc(MAX_BUFFER_SIZE * sizeof(char));
+        fgets(line, MAX_BUFFER_SIZE, file);
+        int len = strlen(line);
+        if (line[len - 1] == '\n') {
+            line[len - 1] = '\0';
+        }
+        lines[linesSize] = line;
+        linesSize++;
+    }
+
+    for (int i = 0; i < linesSize; i++) {
+        VEC_CLR(winning);
+        VEC_CLR(picked);
+
+        char *line = lines[i];
+        char *firstNumber = line + strcspn(line, "1234567890");
+        char *colon = strchr(line, ':');
+        int lineNumber = natoi(firstNumber, colon - firstNumber);
+        char *verticalBar = strchr(colon, '|');
+        char *it = colon + 2;
+
+        while (it < verticalBar) {
+            int nextNumber = strcspn(it, "1234567890");
+            char *nextSpace = strchr(it + nextNumber, ' ');
+            int number = natoi(it + nextNumber, nextSpace - it - nextNumber);
+            VEC_ADD(winning, number);
+            it = nextSpace + 1;
+        }
+        it = verticalBar + 2;
+        while (it < line + strlen(line)) {
+            int nextNumber = strcspn(it, "1234567890");
+            char *nextSpace = strchr(it + nextNumber, ' ');
+            if (nextSpace == NULL) {
+                nextSpace = it + strlen(it);
+            }
+            int number = natoi(it + nextNumber, nextSpace - it - nextNumber);
+            VEC_ADD(picked, number);
+            it = nextSpace + 1;
+        }
+
+#ifdef DEBUG_EXEC
+        printf("%d: %s\n", lineNumber, line);
+        printf("\twinning %s -- ", VEC_STR(winning));
+        for (int j = 0; j < VEC_LEN(winning); j++) {
+            printf("%d ", VEC_GET(winning, int, j));
+        }
+        printf("\n\tpicked %s -- \t", VEC_STR(picked));
+        for (int j = 0; j < VEC_LEN(picked); j++) {
+            printf("%d ", VEC_GET(picked, int, j));
+        }
+        printf("\n");
+#endif
+
+        int countMatches = 0;
+        for (int j = 0; j < VEC_LEN(winning); j++) {
+            int number = VEC_GET(winning, int, j);
+            int hasNumber = FALSE;
+            for (int k = 0; k < VEC_LEN(picked); k++) {
+                if (number == VEC_GET(picked, int, k)) {
+                    countMatches++;
+                    break;
+                }
+            }
+        }
+        countCards[lineNumber]++;
+        sum += countCards[lineNumber];
+        for (int k = 1; k <= countMatches; k++) {
+            countCards[lineNumber + k] += countCards[lineNumber];
+        }
+    }
+
+#ifdef DEBUG_EXEC
+    printf("\ncard counters\n", sum);
+    for (size_t i = 1; i <= linesSize; i++) {
+        printf("%d ", countCards[i]);
+    }
+    printf("\n");
+#endif
+
+    printf("%d\n", sum);
 }

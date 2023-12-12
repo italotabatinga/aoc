@@ -26,3 +26,5 @@ void problem21(FILE* file);
 void problem22(FILE* file);
 void problem31(FILE* file);
 void problem32(FILE* file);
+void problem41(FILE* file);
+void problem42(FILE* file);
