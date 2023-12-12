@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O3
-CLIBS = -I include -L lib
+CLIBS = -I include
 SRC_DIR = ./src
 BUILD_DIR = ./build
 
@@ -21,8 +21,6 @@ $(BUILD_DIR):
 
 clean:
 	rm -rf $(BUILD_DIR)
-
-build: $(BUILD_DIR)/$(TARGET)
 
 run: $(BUILD_DIR)/$(TARGET)
 	./$(BUILD_DIR)/$(TARGET)
