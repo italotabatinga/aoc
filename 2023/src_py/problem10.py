@@ -1,52 +1,28 @@
 import logging
 from src_py.problem import Problem, Part
+from src_py.vec2 import Vec2
 
 
-class Position:
-    def __init__(self, *args) -> None:
-        if len(args) == 1:
-            self.x, self.y = args[0]
-        elif len(args) == 2:
-            self.x, self.y = args
-
-    def __str__(self) -> str:
-        return f"({self.x}, {self.y})"
-
-    def __repr__(self) -> str:
-        return self.__str__()
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Position):
-            return NotImplemented
-        return self.x == other.x and self.y == other.y
-
-    def __add__(self, other: 'Position') -> 'Position':
-        return Position(self.x + other.x, self.y + other.y)
-
-    def __hash__(self) -> int:
-        return hash((self.x, self.y))
-
-
-def connections(input: list[str], pos: Position) -> list[Position]:
+def connections(input: list[str], pos: Vec2) -> list[Vec2]:
     pipe = input[pos.x][pos.y]
 
     if pipe == 'S':
         return s_connections(input, pos)
 
     paths = {
-        '|': [pos + Position(-1, 0), pos + Position(1, 0)],
-        '-': [pos + Position(0, -1), pos + Position(0, 1)],
-        'L': [pos + Position(-1, 0), pos + Position(0, 1)],
-        'J': [pos + Position(-1, 0), pos + Position(0, -1)],
-        '7': [pos + Position(0, -1), pos + Position(1, 0)],
-        'F': [pos + Position(0, 1), pos + Position(1, 0)],
-        '.': [pos + Position(0, 0), pos + Position(0, 0)],
+        '|': [pos + Vec2(-1, 0), pos + Vec2(1, 0)],
+        '-': [pos + Vec2(0, -1), pos + Vec2(0, 1)],
+        'L': [pos + Vec2(-1, 0), pos + Vec2(0, 1)],
+        'J': [pos + Vec2(-1, 0), pos + Vec2(0, -1)],
+        '7': [pos + Vec2(0, -1), pos + Vec2(1, 0)],
+        'F': [pos + Vec2(0, 1), pos + Vec2(1, 0)],
+        '.': [pos + Vec2(0, 0), pos + Vec2(0, 0)],
     }[pipe]
 
     return list(filter(lambda p: p.x in range(0, len(input)) and p.y in range(0, len(input[pos.x])), paths))
 
 
-def next_position(input: list[str], prev: Position, curr: Position) -> Position:
+def next_position(input: list[str], prev: Vec2, curr: Vec2) -> Vec2:
     possibilities = connections(input, curr)
 
     if prev == possibilities[0]:
@@ -55,9 +31,9 @@ def next_position(input: list[str], prev: Position, curr: Position) -> Position:
     return possibilities[0]
 
 
-def s_connections(input: list[str], s: Position) -> (str, list[Position]):
-    directions = [Position(1, 0), Position(-1, 0),
-                  Position(0, 1), Position(0, -1)]
+def s_connections(input: list[str], s: Vec2) -> (str, list[Vec2]):
+    directions = [Vec2(1, 0), Vec2(-1, 0),
+                  Vec2(0, 1), Vec2(0, -1)]
     possibilities = list(filter(lambda p: p.x in range(0, len(
         input)) and p.y in range(0, len(input)), map(lambda d: s + d, directions)))
     possibilities = list(
@@ -89,7 +65,7 @@ def run(problem: Problem, input: list[str]) -> str:
             j = line.index('S')
             break
 
-    s_pos = Position(i, j)
+    s_pos = Vec2(i, j)
     logging.debug(f"S {s_pos}")
     s_pipe, s_nexts = connections(input, s_pos)
     input[i] = input[i][:j] + s_pipe + input[i][j+1:]
@@ -99,7 +75,7 @@ def run(problem: Problem, input: list[str]) -> str:
     curr = s_nexts[0]
     prev = s_pos
     closed_loop = False
-    loop_tiles: set[Position] = set([s_pos, curr])
+    loop_tiles: set[Vec2] = set([s_pos, curr])
     while not closed_loop:
         next = next_position(input, prev, curr)
         logging.debug(f"prev: {prev}, curr: {curr}, next: {next}")
@@ -120,7 +96,7 @@ def run(problem: Problem, input: list[str]) -> str:
         from_up = False
         from_bottom = False
         for j in range(len(input[i])):
-            if Position(i, j) in loop_tiles:
+            if Vec2(i, j) in loop_tiles:
                 loop_mapping.append(0)
                 if input[i][j] == '|':
                     loop_crossings += 1
