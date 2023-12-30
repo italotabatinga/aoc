@@ -8,6 +8,7 @@ import src_py.problem7 as p7
 import src_py.problem8 as p8
 import src_py.problem9 as p9
 import src_py.problem10 as p10
+import src_py.problem11 as p11
 
 
 def parse_args() -> argparse.Namespace:
@@ -50,6 +51,8 @@ if __name__ == "__main__":
         result = p9.run(problem, input)
     elif problem.day == 10:
         result = p10.run(problem, input)
+    elif problem.day == 11:
+        result = p11.run(problem, input)
     else:
         logging.error("Problem not implemented")
         exit(1)
