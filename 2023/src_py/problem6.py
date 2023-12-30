@@ -19,11 +19,18 @@ def run(problem: Problem, input: list[str]) -> str:
     for time, distance in zip(times, distances):
         logging.debug(f"time: {time}, distance: {distance}")
 
-        for i in range(0, time // 2):
-            if (i) * (time - i) > distance:
-                logging.debug(f"\tfound: {i}")
-                possibilities.append(round((time / 2 - i) * 2) + 1)
-                break
+        start = 0
+        end = time // 2
+        while start < end:
+            mid = (start + end) // 2
+            if mid * (time - mid) > distance:
+                end = mid
+            else:
+                start = mid + 1
+
+        logging.debug(f"\tfound: {start}")
+        possibilities.append(round((time / 2 - start) * 2) + 1)
+
     logging.debug(f"possibilities: {possibilities}")
     result = 1
     for possibility in possibilities:
