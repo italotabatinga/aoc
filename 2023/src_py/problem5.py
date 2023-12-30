@@ -21,7 +21,7 @@ def run(problem: Problem, input: list[str]) -> str:
     almanac = Almanac()
 
     for line in input[2:]:
-        if line.startswith("\n"):
+        if line == "":
             continue
 
         if line.startswith("seed-to-soil"):

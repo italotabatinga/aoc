@@ -52,4 +52,4 @@ def read_input(problem: Problem) -> list[str]:
         print(f"Could not open file for problem {problem}")
         exit(1)
 
-    return file.readlines()
+    return file.read().splitlines()
