@@ -4,6 +4,7 @@ import logging
 from src_py.problem import parseProblem, read_input
 import src_py.problem5 as p5
 import src_py.problem6 as p6
+import src_py.problem7 as p7
 
 
 def parse_args() -> argparse.Namespace:
@@ -38,6 +39,8 @@ if __name__ == "__main__":
         result = p5.run(problem, input)
     elif problem.day == 6:
         result = p6.run(problem, input)
+    elif problem.day == 7:
+        result = p7.run(problem, input)
     else:
         logging.error("Problem not implemented")
         exit(1)
