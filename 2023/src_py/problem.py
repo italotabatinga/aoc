@@ -1,4 +1,5 @@
 from enum import Enum
+import os
 
 
 class Part(Enum):
@@ -21,17 +22,10 @@ class Problem:
         self.test = test
 
 
-def parseProblem(argv: list[str]) -> Problem:
-    if len(argv) == 0:
-        print("No problem specified, use format: [--test] 3.1")
-        exit(1)
-
+def parseProblem(problem: str, test: bool) -> Problem:
     part = Part.ONE
-    test = False
-    if "--test" in argv:
-        test = True
 
-    dayStr, partStr = argv[-1].split(".")  # 3.1
+    dayStr, partStr = problem.split(".")  # 3.1
     if partStr == "1":
         part = Part.ONE
     elif partStr == "2":
@@ -40,14 +34,22 @@ def parseProblem(argv: list[str]) -> Problem:
     return Problem(int(dayStr), part, test)
 
 
-def readInput(problem: Problem) -> list[str]:
-    fileString = "files/" + str(problem.day) + "." + str(problem.part)
+def read_input(problem: Problem) -> list[str]:
+    compact_file_string = "files/" + str(problem.day)
+    complete_file_string = "files/" + \
+        str(problem.day) + "." + str(problem.part)
     if problem.test:
-        fileString += "_test"
-    fileString += ".txt"
-    file = open(fileString, "r")
-    if file == None:
-        print("Could not open file " + fileString)
+        compact_file_string += "_test"
+        complete_file_string += "_test"
+    compact_file_string += ".txt"
+    complete_file_string += ".txt"
+
+    if os.path.exists(complete_file_string):
+        file = open(complete_file_string, "r")
+    elif os.path.exists(compact_file_string):
+        file = open(compact_file_string, "r")
+    else:
+        print(f"Could not open file for problem {problem}")
         exit(1)
 
     return file.readlines()

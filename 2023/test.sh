@@ -26,7 +26,14 @@ function tests() {
     echo -n "testing $problem...."
 
     echo $expected_result > $expected
-    tmp/aoc $problem > $result
+    case $problem in
+      1.1|1.2|2.1|2.2|3.1|3.2|4.1|4.2)
+        tmp/aoc $problem > $result
+        ;;
+      *)
+        python3 main.py $problem > $result
+        ;;
+    esac
 
     if cmp -s $expected $result; then
       echo OK
