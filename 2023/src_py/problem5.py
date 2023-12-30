@@ -45,7 +45,7 @@ def run(problem: Problem, input: list[str]) -> str:
             almanac.add(item, almanac_type)
 
     almanac.build_seed_to_location_map()
-    print(almanac)
+    logging.debug(str(almanac))
 
     sequence = [
         AlmanacType.SEED_TO_SOIL,
