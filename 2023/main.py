@@ -11,6 +11,7 @@ import src_py.problem10 as p10
 import src_py.problem11 as p11
 import src_py.problem13 as p13
 import src_py.problem14 as p14
+import src_py.problem15 as p15
 
 
 def parse_args() -> argparse.Namespace:
@@ -59,6 +60,8 @@ if __name__ == "__main__":
         result = p13.run(problem, input)
     elif problem.day == 14:
         result = p14.run(problem, input)
+    elif problem.day == 15:
+        result = p15.run(problem, input)
     else:
         logging.error("Problem not implemented")
         exit(1)
