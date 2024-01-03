@@ -1,4 +1,3 @@
-from enum import Enum
 import logging
 from src_py.problem import Problem, Part
 
