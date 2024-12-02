@@ -1,4 +1,4 @@
-require_relative 'problem_base'
+require_relative "problem_base"
 
 class Problem1 < ProblemBase
   def problem = 1
@@ -6,9 +6,9 @@ class Problem1 < ProblemBase
   def build_lists(part)
     @left = []
     @right = []
-    input = part == 1 ? input1 : input2
+    input = (part == 1) ? input1 : input2
     input.each_line do |line|
-      a, b = line.split(' ')
+      a, b = line.split(" ")
       @left.push(a.to_i)
       @right.push(b.to_i)
     end
@@ -21,7 +21,7 @@ class Problem1 < ProblemBase
 
   def part1
     build_lists(1)
-    sort_lists()
+    sort_lists
 
     @left.sort!
     @right.sort!
@@ -46,7 +46,7 @@ class Problem1 < ProblemBase
     similarity_score = 0
     @left.each do |l|
       known_similarity = similarities[l]
-      if known_similarity == nil
+      if known_similarity.nil?
         r_occurrence = r_occurrences[l] || 0
         known_similarity = l * r_occurrence
         similarities[l] = known_similarity

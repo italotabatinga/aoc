@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'optparse'
+require "optparse"
 
 class AocTest
   attr_reader :problem, :part, :expected, :exception
@@ -14,7 +14,7 @@ class AocTest
   end
 
   def run(&block)
-    @actual = block.call()
+    @actual = block.call
     @success = @actual == @expected
   rescue => e
     @exception = e
@@ -46,7 +46,7 @@ class AdventOfCodeCLI
       end
 
       opts.on("-t", "--test [PROBLEM.PART]", "Test the specified problem and part or all if not specified") do |v|
-        @options[:test] = v || 'all'
+        @options[:test] = v || "all"
       end
 
       opts.on("-e", "--example", "Run the example input for the specified problem and part") do
@@ -57,11 +57,11 @@ class AdventOfCodeCLI
 
   def run
     if @options[:run]
-      problem, part = @options[:run].split('.')
+      problem, part = @options[:run].split(".")
       run_problem(problem, part, @options[:example])
     elsif @options[:test]
-      if @options[:test] == 'all'
-        test_problems()
+      if @options[:test] == "all"
+        test_problems
       else
         test_problem(@options[:test])
       end
@@ -80,16 +80,16 @@ class AdventOfCodeCLI
   end
 
   def test_problems(problem_string = nil)
-    expected_answers = File.read('outputs.txt').split("\n").map { |line| line.split(' ') }.to_h
+    expected_answers = File.read("outputs.txt").split("\n").map { |line| line.split(" ") }.to_h
     if problem_string
-      problem, part = problem_string.split('.')
+      problem, part = problem_string.split(".")
       expected = expected_answers["#{problem}.#{part}"]
       raise "Output not defined for #{problem_string}" if expected.nil?
 
       test_problem(problem, part, expected)
     else
       expected_answers.each do |problem_string, expected|
-        problem, part = problem_string.split('.')
+        problem, part = problem_string.split(".")
         test_problem(problem, part, expected)
       end
     end

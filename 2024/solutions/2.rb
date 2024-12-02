@@ -1,13 +1,13 @@
-require_relative 'problem_base'
+require_relative "problem_base"
 
 class Problem2 < ProblemBase
   def problem = 2
 
   def build(part)
     @reports = []
-    input = part == 1 ? input1 : input2
+    input = (part == 1) ? input1 : input2
     input.each_line do |line|
-      @reports.push(line.split(' ').map(&:to_i))
+      @reports.push(line.split(" ").map(&:to_i))
     end
   end
 
@@ -16,12 +16,12 @@ class Problem2 < ProblemBase
     last = nil
     report.each_cons(2) do |a, b|
       diff = (a - b).abs
-      if (diff < 1 || diff > 3) || (last != nil && ((b >= a && a <= last) || (b <= a && a >= last)))
+      if (diff < 1 || diff > 3) || (!last.nil? && ((b >= a && a <= last) || (b <= a && a >= last)))
         safe = false
         tentative_safe = false
         if test_bad_level
           report.each_with_index do |_, i|
-            tentative_report = report.dup.tap{ |x| x.delete_at(i) }
+            tentative_report = report.dup.tap { |x| x.delete_at(i) }
             tentative_safe = is_safe(tentative_report)
 
             break if tentative_safe

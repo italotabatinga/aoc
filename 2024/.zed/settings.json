@@ -1,0 +1,23 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+{
+  "vim_mode": true,
+  "languages": {
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "!rubocop", "!solargraph"]
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "formatter": "standard",
+          "linters": ["standard"],
+          "diagnostics": false
+        }
+      }
+    }
+  }
+}
