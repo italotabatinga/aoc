@@ -15,7 +15,7 @@ class Problem3 < ProblemBase
     result = 0
     mul_occurrences = @line.scan(/mul\(\d+,\d+\)/)
     mul_occurrences.each do |mul|
-      a, b = mul[4..-2].split(',').map(&:to_i)
+      a, b = mul[4..-2].split(",").map(&:to_i)
       result += a * b
     end
     result
@@ -28,14 +28,14 @@ class Problem3 < ProblemBase
     should_do = true
     operations = @line.scan(/(mul\(\d+,\d+\))|(do\(\))|(don't\(\))/).map { |x| x.compact.first }
     operations.each do |op|
-      if op == 'do()'
+      if op == "do()"
         should_do = true
-      elsif op == "don\'t()"
+      elsif op == "don't()"
         should_do = false
       else
         next if !should_do
 
-        a, b = op[4..-2].split(',').map(&:to_i)
+        a, b = op[4..-2].split(",").map(&:to_i)
         result += a * b
       end
     end
