@@ -15,18 +15,18 @@ class Problem5 < ProblemBase
           next
         end
 
-        a, b = line[0...-1].split('|').map(&:to_i)
+        a, b = line[0...-1].split("|").map(&:to_i)
         @order_map[a] ||= []
         @order_map[a].push(b)
       else
-        @lines.push(line[0...-1].split(',').map(&:to_i))
+        @lines.push(line[0...-1].split(",").map(&:to_i))
       end
     end
   end
 
   def valid_update?(update)
     update.each_with_index do |page, i|
-      update[i+1..].each do |other_page|
+      update[i + 1..].each do |other_page|
         if @order_map[other_page]&.include?(page)
           return false
         end
