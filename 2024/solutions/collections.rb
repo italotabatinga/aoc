@@ -1,6 +1,9 @@
 class Vec2
   attr_reader :x, :y
 
+  alias_method :i, :x
+  alias_method :j, :y
+
   def initialize(x, y)
     @x = x
     @y = y

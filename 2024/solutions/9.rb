@@ -16,7 +16,7 @@ class File
   end
 
   def to_s = "File(#{@index}, #{size}, #{@empty})"
-  alias :inspect :to_s
+  alias_method :inspect, :to_s
 end
 
 class Problem9 < ProblemBase
@@ -50,7 +50,7 @@ class Problem9 < ProblemBase
     i = 0
     j = @last_file_pos
     while i < j
-      while @hd[i] != nil
+      until @hd[i].nil?
         i += 1
       end
 
@@ -60,7 +60,7 @@ class Problem9 < ProblemBase
       i += 1
       j -= 1
 
-      while @hd[j] == nil
+      while @hd[j].nil?
         j -= 1
       end
     end
@@ -87,12 +87,12 @@ class Problem9 < ProblemBase
         file.empty >= @files[j].size
       end
 
-      if k != nil
+      if !k.nil?
         k += i
         file = @files[j]
-        @files[j-1].empty += file.size + file.empty
+        @files[j - 1].empty += file.size + file.empty
         @files.delete_at(j)
-        @files.insert(k+1, file)
+        @files.insert(k + 1, file)
         @files[k].allocate_at_right(file)
       else
         j -= 1

@@ -14,7 +14,7 @@ class Problem8 < ProblemBase
     input.each_line.each_with_index do |line, i|
       line[...-1].chars.each_with_index do |char, j|
         @j_size = j if j > @j_size
-        next if char == '.'
+        next if char == "."
         @antennas[char] ||= []
         @antennas[char].push(Vec2.new(i, j))
       end
@@ -30,10 +30,8 @@ class Problem8 < ProblemBase
 
     @antennas.each do |_, antennas|
       antennas[...-1].each_with_index do |ant_a, i|
-        antennas[i+1..].each_with_index do |ant_b, j|
+        antennas[i + 1..].each_with_index do |ant_b, j|
           diff = ant_b - ant_a
-          first_antinode = ant_b + diff
-          second_antinode = ant_a - diff
           potential_antinodes = [ant_b + diff, ant_a - diff]
           potential_antinodes.each do |potential_antinode|
             if potential_antinode.x >= 0 && potential_antinode.x < @i_size && potential_antinode.y >= 0 && potential_antinode.y < @j_size
@@ -52,7 +50,7 @@ class Problem8 < ProblemBase
 
     @antennas.each do |_, antennas|
       antennas[...-1].each_with_index do |ant_a, i|
-        antennas[i+1..].each_with_index do |ant_b, j|
+        antennas[i + 1..].each_with_index do |ant_b, j|
           diff = ant_b - ant_a
           init_pos = ant_a - diff
           @antinodes.add(ant_a)
