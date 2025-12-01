@@ -58,26 +58,42 @@ class Solutionable
   def problem
   end
 
-  sig { abstract.params(use_example_input: T::Boolean).returns(String) }
-  def run_1(use_example_input)
+  sig { abstract.params(input: String).returns(String) }
+  def run_1(input)
   end
 
-  sig { abstract.params(use_example_input: T::Boolean).returns(String) }
-  def run_2(use_example_input)
+  sig { abstract.params(input: String).returns(String) }
+  def run_2(input)
   end
 
   sig { params(part: ProblemPart, use_example_input: T::Boolean).returns(String) }
   def run(part, use_example_input)
+    input = read_input(part, use_example_input)
+
     result = case part
     when ProblemPart::First
-      run_1(use_example_input)
+      run_1(input)
     when ProblemPart::Second
-      run_2(use_example_input)
+      run_2(input)
     else T.absurd(part)
     end
 
     puts "Problem #{problem}.#{part} - #{result}"
 
     result
+  end
+
+  sig { params(part: ProblemPart, use_example_input: T::Boolean).returns(String) }
+  def read_input(part, use_example_input)
+    file_name_base = File.join("inputs", problem.to_s + (use_example_input ? "_example.txt" : ".txt"))
+    file_name_with_part = File.join("inputs", "#{problem}_#{part}" + (use_example_input ? "_example.txt" : ".txt"))
+
+    if File.exist?(file_name_with_part)
+      File.read(file_name_with_part)
+    elsif File.exist?(file_name_base)
+      File.read(file_name_base)
+    else
+      raise "file not found, expected #{file_name_with_part} or #{file_name_base} to be defined"
+    end
   end
 end
