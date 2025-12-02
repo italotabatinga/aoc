@@ -1,5 +1,5 @@
-# frozen_string_literal: true
 # typed: true
+# frozen_string_literal: true
 
 require "sorbet-runtime"
 
@@ -70,7 +70,7 @@ class Solutionable
   def run(part, use_example_input)
     input = read_input(part, use_example_input)
 
-    result = case part
+    case part
     when ProblemPart::First
       run_1(input)
     when ProblemPart::Second
@@ -78,9 +78,7 @@ class Solutionable
     else T.absurd(part)
     end
 
-    puts "Problem #{problem}.#{part} - #{result}"
-
-    result
+    # puts "Problem #{problem}.#{part} - #{result}"
   end
 
   sig { params(part: ProblemPart, use_example_input: T::Boolean).returns(String) }
