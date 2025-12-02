@@ -19,7 +19,8 @@ class Cli
   attr_reader :options
 
   SOLUTIONS = T.let({
-    1 => Solution1.new
+    1 => Solution1.new,
+    2 => Solution2.new
   }, T::Hash[Integer, Solutionable])
 
   def self.run = new.run
