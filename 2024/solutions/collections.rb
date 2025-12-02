@@ -3,6 +3,8 @@ class Vec2
 
   alias_method :i, :x
   alias_method :j, :y
+  alias_method :a, :x
+  alias_method :b, :y
 
   def initialize(x, y)
     @x = x
