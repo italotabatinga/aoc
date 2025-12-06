@@ -12,7 +12,8 @@ SOLUTIONS = T.let({
   2 => Solution2,
   3 => Solution3,
   4 => Solution4,
-  5 => Solution5
+  5 => Solution5,
+  6 => Solution6
 }, T::Hash[Integer, T.class_of(Solutionable)])
 
 ANSWERS = T.let({
@@ -20,7 +21,8 @@ ANSWERS = T.let({
   2 => ["12599655151", "20942028255"],
   3 => ["17193", "171297349921310"],
   4 => ["1549", "8887"],
-  5 => ["739", "344486348901788"]
+  5 => ["739", "344486348901788"],
+  6 => ["6343365546996", "11136895955912"]
 }, T::Hash[Integer, [String, String]])
 
 #: (Problem, T::Boolean) -> String
